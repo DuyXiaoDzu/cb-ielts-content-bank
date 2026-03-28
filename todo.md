@@ -46,3 +46,13 @@
 - [x] Run pnpm test (38/38 passed)
 - [x] Verify all pages load correctly (confirmed via screenshot)
 - [x] Verify database CRUD operations (schema applied successfully)
+
+## Tính năng mới (28/03/2026)
+
+- [x] Liên kết Video Pipeline ↔ Planning Board: posts slotType=Video hiện ở cả 2 nơi, tab Video chỉ cho edit video-specific fields
+- [x] PostDetailModal: Quick Checklist có thể tick/untick từng item
+- [x] PostDetailModal: Copy button copy toàn bộ thông tin post dạng text để paste vào AI
+- [x] PostDetailModal: Priority tabs (Overview/Content/Review/Details) có màu theo mức độ quan trọng
+- [x] PostDetailModal: AI Parse — paste bài viết hoàn chỉnh → AI tự tách hook/body/hashtag/CTA điền vào fields
+- [x] PostDetailModal: Tab Review = Facebook Post Mockup (preview bài đăng FB hoàn chỉnh)
+- [x] Whiteboard: Sửa text tool — có thể click vào canvas và gõ chữ được

@@ -152,6 +152,9 @@ function WhiteboardCanvas({ board, onBack, onSave }: {
   const [stickyText, setStickyText] = useState('');
   const [showStickyInput, setShowStickyInput] = useState(false);
   const [stickyPos, setStickyPos] = useState({ x: 0, y: 0 });
+  const [textInput, setTextInput] = useState('');
+  const [showTextInput, setShowTextInput] = useState(false);
+  const [textPos, setTextPos] = useState({ x: 0, y: 0 });
 
   // Load saved data
   useEffect(() => {
@@ -340,8 +343,8 @@ function WhiteboardCanvas({ board, onBack, onSave }: {
     }
 
     if (tool === 'text') {
-      const text = prompt('Enter text:');
-      if (text) setElements(prev => [...prev, { id: newId(), type: 'text', x: pos.x, y: pos.y, text, color, size: brushSize * 5 }]);
+      setTextPos(pos);
+      setShowTextInput(true);
       return;
     }
     if (tool === 'sticky') {
@@ -476,6 +479,36 @@ function WhiteboardCanvas({ board, onBack, onSave }: {
         <canvas ref={canvasRef} className={cursorStyle}
           onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} />
       </div>
+
+      {/* Text Input Dialog */}
+      <Dialog open={showTextInput} onOpenChange={v => { if (!v) { setShowTextInput(false); setTextInput(''); } }}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader><DialogTitle>Add Text</DialogTitle></DialogHeader>
+          <Input
+            value={textInput}
+            onChange={e => setTextInput(e.target.value)}
+            placeholder="Enter text..."
+            autoFocus
+            onKeyDown={e => {
+              if (e.key === 'Enter' && textInput.trim()) {
+                setElements(prev => [...prev, { id: newId(), type: 'text', x: textPos.x, y: textPos.y, text: textInput.trim(), color, size: Math.max(12, brushSize * 4) }]);
+                setTextInput('');
+                setShowTextInput(false);
+              }
+            }}
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => { setShowTextInput(false); setTextInput(''); }}>Cancel</Button>
+            <Button onClick={() => {
+              if (textInput.trim()) {
+                setElements(prev => [...prev, { id: newId(), type: 'text', x: textPos.x, y: textPos.y, text: textInput.trim(), color, size: Math.max(12, brushSize * 4) }]);
+                setTextInput('');
+                setShowTextInput(false);
+              }
+            }}>Add</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Sticky Note Input */}
       <Dialog open={showStickyInput} onOpenChange={v => { if (!v) setShowStickyInput(false); }}>

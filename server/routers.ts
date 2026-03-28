@@ -455,6 +455,60 @@ export const appRouter = router({
     ),
   }),
 
+  // ─── AI Tools ───
+  ai: router({
+    parsePost: protectedProcedure.input(z.object({
+      rawText: z.string(),
+    })).mutation(async ({ input }) => {
+      const { invokeLLM } = await import('./_core/llm');
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: 'system',
+            content: `You are a social media content analyst for an IELTS education center. 
+Analyze the given post text and extract structured components. 
+Return ONLY a JSON object with these exact fields:
+- hook: the opening hook sentence(s) that grab attention (first 1-3 sentences)
+- body: the main content body (middle section, educational content, tips, etc.)
+- hashtags: all hashtags found (as a single string with spaces between)
+- cta: the call-to-action (last sentence asking users to comment, share, etc.)
+- caption: the full post text without hashtags (hook + body + cta combined)
+- topic: a short 5-10 word title summarizing the post
+If a component is not clearly identifiable, return an empty string for that field.`,
+          },
+          {
+            role: 'user',
+            content: `Parse this social media post:\n\n${input.rawText}`,
+          },
+        ],
+        response_format: {
+          type: 'json_schema',
+          json_schema: {
+            name: 'post_parse',
+            strict: true,
+            schema: {
+              type: 'object',
+              properties: {
+                hook: { type: 'string' },
+                body: { type: 'string' },
+                hashtags: { type: 'string' },
+                cta: { type: 'string' },
+                caption: { type: 'string' },
+                topic: { type: 'string' },
+              },
+              required: ['hook', 'body', 'hashtags', 'cta', 'caption', 'topic'],
+              additionalProperties: false,
+            },
+          },
+        },
+      });
+      const content = response.choices?.[0]?.message?.content;
+      if (!content) throw new Error('AI parse failed');
+      const contentStr = typeof content === 'string' ? content : JSON.stringify(content);
+      return JSON.parse(contentStr) as { hook: string; body: string; hashtags: string; cta: string; caption: string; topic: string };
+    }),
+  }),
+
   // ─── Import/Export ───
   importExport: router({
     import: protectedProcedure.input(z.object({

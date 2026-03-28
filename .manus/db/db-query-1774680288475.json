@@ -1,0 +1,148 @@
+{
+  "query": "SHOW COLUMNS FROM series;\nSELECT s.id, s.code, s.name, s.laneId, s.pillarId, l.code as laneCode, p.code as pillarCode FROM series s JOIN lanes l ON s.laneId = l.id JOIN pillars p ON s.pillarId = p.id ORDER BY l.code, p.code LIMIT 40;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SHOW COLUMNS FROM series;\nSELECT s.id, s.code, s.name, s.laneId, s.pillarId, l.code as laneCode, p.code as pillarCode FROM series s JOIN lanes l ON s.laneId = l.id JOIN pillars p ON s.pillarId = p.id ORDER BY l.code, p.code LIMIT 40;",
+  "rows": [
+    {
+      "Field": "id",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": "NULL",
+      "Extra": "auto_increment"
+    },
+    {
+      "Field": "code",
+      "Type": "varchar(20)",
+      "Null": "NO",
+      "Key": "UNI",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "name",
+      "Type": "varchar(200)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "laneId",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "pillarId",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "purpose",
+      "Type": "text",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "typicalFormat",
+      "Type": "varchar(100)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "defaultApproval",
+      "Type": "varchar(100)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "defaultSourceType",
+      "Type": "varchar(100)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "defaultDifficulty",
+      "Type": "int",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "createdAt",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": ""
+    },
+    {
+      "Field": "updatedAt",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+    }
+  ],
+  "messages": [
+    "id\tcode\tname\tlaneId\tpillarId\tlaneCode\tpillarCode",
+    "17\tLR.TS\tTest Strategy\t1\t1\tAC\tLR",
+    "18\tLR.W1\tWriting Task 1\t1\t1\tAC\tLR",
+    "19\tLR.W2\tWriting Task 2\t1\t1\tAC\tLR",
+    "20\tLR.S1\tSpeaking Part 1\t1\t1\tAC\tLR",
+    "21\tLR.S2\tSpeaking Part 2-3\t1\t1\tAC\tLR",
+    "22\tLR.FF\tFind & Fix\t1\t1\tAC\tLR",
+    "10\tLR.RL\tReal Learning\t1\t1\tAC\tLR",
+    "11\tLR.EX\tExaminer View\t1\t1\tAC\tLR",
+    "12\tLR.PA\tPaper Analysis\t1\t1\tAC\tLR",
+    "13\tLR.SA\tSpeaking Analysis\t1\t1\tAC\tLR",
+    "14\tLR.WA\tWriting Analysis\t1\t1\tAC\tLR",
+    "15\tLR.RB\tRubric Breakdown\t1\t1\tAC\tLR",
+    "16\tLR.MD\tMethod\t1\t1\tAC\tLR",
+    "40\tSS.SI\tStudent Interview\t6\t4\tAD\tSS",
+    "39\tSS.HF\tHall of Fame\t6\t4\tAD\tSS",
+    "1\tAS.EA\tEarly Advantage\t2\t2\tDG\tAS",
+    "2\tAS.SR\tStart Right\t2\t2\tDG\tAS",
+    "4\tAS.CP\tChoice Power\t2\t2\tDG\tAS",
+    "3\tAS.FG\tFuture Groundwork\t2\t2\tDG\tAS",
+    "6\tBT.PT\tPlacement Test Promo\t2\t5\tDG\tBT",
+    "5\tBT.FP\tFuture Pressure\t2\t5\tDG\tBT",
+    "26\tLR.ID\tIdioms\t3\t1\tMT\tLR",
+    "23\tLR.TL\tTools\t3\t1\tMT\tLR",
+    "27\tLR.NS\tNear Synonyms\t3\t1\tMT\tLR",
+    "28\tLR.PIC\tPicture Clues\t3\t1\tMT\tLR",
+    "29\tLR.RTG\tRead to Grow\t3\t1\tMT\tLR",
+    "25\tLR.PV\tPhrasal Verbs\t3\t1\tMT\tLR",
+    "24\tLR.NW\tNew Words\t3\t1\tMT\tLR",
+    "30\tLR.ST\tShort Stories\t3\t1\tMT\tLR",
+    "37\tSS.CA\tClass Activities\t4\t4\tSR\tSS",
+    "36\tSS.PO\tPeople Stories\t4\t4\tSR\tSS",
+    "34\tSS.LP\tLearning Progress\t4\t4\tSR\tSS",
+    "31\tSS.FS\tFirst Speaking\t4\t4\tSR\tSS",
+    "33\tSS.TF\tTeacher Feedback\t4\t4\tSR\tSS",
+    "38\tSS.EV\tEvents\t4\t4\tSR\tSS",
+    "35\tSS.SC\tStudent Confidence\t4\t4\tSR\tSS",
+    "32\tSS.CM\tClass Moment\t4\t4\tSR\tSS",
+    "9\tBG.BD\tBand Descriptor\t5\t6\tTC\tBG",
+    "8\tPF.PT\tPlacement Test CTA\t5\t3\tTC\tPF",
+    "7\tPF.OS\tOpening Schedule\t5\t3\tTC\tPF"
+  ],
+  "stdout": "Field\tType\tNull\tKey\tDefault\tExtra\nid\tint\tNO\tPRI\tNULL\tauto_increment\ncode\tvarchar(20)\tNO\tUNI\tNULL\t\nname\tvarchar(200)\tNO\t\tNULL\t\nlaneId\tint\tNO\t\tNULL\t\npillarId\tint\tNO\t\tNULL\t\npurpose\ttext\tYES\t\tNULL\t\ntypicalFormat\tvarchar(100)\tYES\t\tNULL\t\ndefaultApproval\tvarchar(100)\tYES\t\tNULL\t\ndefaultSourceType\tvarchar(100)\tYES\t\tNULL\t\ndefaultDifficulty\tint\tYES\t\tNULL\t\ncreatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\t\nupdatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\tDEFAULT_GENERATED on update CURRENT_TIMESTAMP\nid\tcode\tname\tlaneId\tpillarId\tlaneCode\tpillarCode\n17\tLR.TS\tTest Strategy\t1\t1\tAC\tLR\n18\tLR.W1\tWriting Task 1\t1\t1\tAC\tLR\n19\tLR.W2\tWriting Task 2\t1\t1\tAC\tLR\n20\tLR.S1\tSpeaking Part 1\t1\t1\tAC\tLR\n21\tLR.S2\tSpeaking Part 2-3\t1\t1\tAC\tLR\n22\tLR.FF\tFind & Fix\t1\t1\tAC\tLR\n10\tLR.RL\tReal Learning\t1\t1\tAC\tLR\n11\tLR.EX\tExaminer View\t1\t1\tAC\tLR\n12\tLR.PA\tPaper Analysis\t1\t1\tAC\tLR\n13\tLR.SA\tSpeaking Analysis\t1\t1\tAC\tLR\n14\tLR.WA\tWriting Analysis\t1\t1\tAC\tLR\n15\tLR.RB\tRubric Breakdown\t1\t1\tAC\tLR\n16\tLR.MD\tMethod\t1\t1\tAC\tLR\n40\tSS.SI\tStudent Interview\t6\t4\tAD\tSS\n39\tSS.HF\tHall of Fame\t6\t4\tAD\tSS\n1\tAS.EA\tEarly Advantage\t2\t2\tDG\tAS\n2\tAS.SR\tStart Right\t2\t2\tDG\tAS\n4\tAS.CP\tChoice Power\t2\t2\tDG\tAS\n3\tAS.FG\tFuture Groundwork\t2\t2\tDG\tAS\n6\tBT.PT\tPlacement Test Promo\t2\t5\tDG\tBT\n5\tBT.FP\tFuture Pressure\t2\t5\tDG\tBT\n26\tLR.ID\tIdioms\t3\t1\tMT\tLR\n23\tLR.TL\tTools\t3\t1\tMT\tLR\n27\tLR.NS\tNear Synonyms\t3\t1\tMT\tLR\n28\tLR.PIC\tPicture Clues\t3\t1\tMT\tLR\n29\tLR.RTG\tRead to Grow\t3\t1\tMT\tLR\n25\tLR.PV\tPhrasal Verbs\t3\t1\tMT\tLR\n24\tLR.NW\tNew Words\t3\t1\tMT\tLR\n30\tLR.ST\tShort Stories\t3\t1\tMT\tLR\n37\tSS.CA\tClass Activities\t4\t4\tSR\tSS\n36\tSS.PO\tPeople Stories\t4\t4\tSR\tSS\n34\tSS.LP\tLearning Progress\t4\t4\tSR\tSS\n31\tSS.FS\tFirst Speaking\t4\t4\tSR\tSS\n33\tSS.TF\tTeacher Feedback\t4\t4\tSR\tSS\n38\tSS.EV\tEvents\t4\t4\tSR\tSS\n35\tSS.SC\tStudent Confidence\t4\t4\tSR\tSS\n32\tSS.CM\tClass Moment\t4\t4\tSR\tSS\n9\tBG.BD\tBand Descriptor\t5\t6\tTC\tBG\n8\tPF.PT\tPlacement Test CTA\t5\t3\tTC\tPF\n7\tPF.OS\tOpening Schedule\t5\t3\tTC\tPF\n",
+  "stderr": "",
+  "execution_time_ms": 1757
+}

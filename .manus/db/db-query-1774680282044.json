@@ -1,0 +1,75 @@
+{
+  "query": "SHOW COLUMNS FROM pillars;\nSELECT * FROM pillars LIMIT 30;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SHOW COLUMNS FROM pillars;\nSELECT * FROM pillars LIMIT 30;",
+  "rows": [
+    {
+      "Field": "id",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": "NULL",
+      "Extra": "auto_increment"
+    },
+    {
+      "Field": "code",
+      "Type": "varchar(10)",
+      "Null": "NO",
+      "Key": "UNI",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "name",
+      "Type": "varchar(200)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "createdAt",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": ""
+    },
+    {
+      "Field": "updatedAt",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+    }
+  ],
+  "messages": [
+    "id\tcode\tname\tcreatedAt\tupdatedAt",
+    "1\tLR\tLearn Right\t2026-03-28 06:35:15\t2026-03-28 06:35:15",
+    "2\tAS\tAwareness & Start\t2026-03-28 06:35:15\t2026-03-28 06:35:15",
+    "3\tPF\tProof & Funnel\t2026-03-28 06:35:15\t2026-03-28 06:35:15",
+    "4\tSS\tSafe to Shine\t2026-03-28 06:35:15\t2026-03-28 06:35:15",
+    "5\tBT\tBand on Time\t2026-03-28 06:35:16\t2026-03-28 06:35:16",
+    "6\tBG\tBand Gap\t2026-03-28 06:35:16\t2026-03-28 06:35:16",
+    "7\tOS\tOpening Schedule\t2026-03-28 06:35:16\t2026-03-28 06:35:16",
+    "8\tPT\tPlacement Test\t2026-03-28 06:35:16\t2026-03-28 06:35:16",
+    "9\tFG\tFuture Groundwork\t2026-03-28 06:35:16\t2026-03-28 06:35:16",
+    "10\tEA\tEarly Advantage\t2026-03-28 06:35:17\t2026-03-28 06:35:17",
+    "11\tSR\tStart Right\t2026-03-28 06:35:17\t2026-03-28 06:35:17",
+    "12\tCP\tChoice Power\t2026-03-28 06:35:17\t2026-03-28 06:35:17",
+    "13\tFP\tFuture Pressure\t2026-03-28 06:35:17\t2026-03-28 06:35:17",
+    "14\tSI\tStudent Interview\t2026-03-28 06:35:18\t2026-03-28 06:35:18",
+    "15\tHF\tHall of Fame\t2026-03-28 06:35:18\t2026-03-28 06:35:18",
+    "16\tCM\tClass Moment\t2026-03-28 06:35:18\t2026-03-28 06:35:18",
+    "17\tTF\tTeacher Feedback\t2026-03-28 06:35:18\t2026-03-28 06:35:18",
+    "18\tLP\tLearning Progress\t2026-03-28 06:35:18\t2026-03-28 06:35:18",
+    "19\tSC\tStudent Confidence\t2026-03-28 06:35:19\t2026-03-28 06:35:19",
+    "20\tPO\tPeople Stories\t2026-03-28 06:35:19\t2026-03-28 06:35:19",
+    "21\tCA\tClass Activities\t2026-03-28 06:35:19\t2026-03-28 06:35:19",
+    "22\tEV\tEvents\t2026-03-28 06:35:19\t2026-03-28 06:35:19",
+    "23\tFS\tFirst Speaking\t2026-03-28 06:35:20\t2026-03-28 06:35:20"
+  ],
+  "stdout": "Field\tType\tNull\tKey\tDefault\tExtra\nid\tint\tNO\tPRI\tNULL\tauto_increment\ncode\tvarchar(10)\tNO\tUNI\tNULL\t\nname\tvarchar(200)\tNO\t\tNULL\t\ncreatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\t\nupdatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\tDEFAULT_GENERATED on update CURRENT_TIMESTAMP\nid\tcode\tname\tcreatedAt\tupdatedAt\n1\tLR\tLearn Right\t2026-03-28 06:35:15\t2026-03-28 06:35:15\n2\tAS\tAwareness & Start\t2026-03-28 06:35:15\t2026-03-28 06:35:15\n3\tPF\tProof & Funnel\t2026-03-28 06:35:15\t2026-03-28 06:35:15\n4\tSS\tSafe to Shine\t2026-03-28 06:35:15\t2026-03-28 06:35:15\n5\tBT\tBand on Time\t2026-03-28 06:35:16\t2026-03-28 06:35:16\n6\tBG\tBand Gap\t2026-03-28 06:35:16\t2026-03-28 06:35:16\n7\tOS\tOpening Schedule\t2026-03-28 06:35:16\t2026-03-28 06:35:16\n8\tPT\tPlacement Test\t2026-03-28 06:35:16\t2026-03-28 06:35:16\n9\tFG\tFuture Groundwork\t2026-03-28 06:35:16\t2026-03-28 06:35:16\n10\tEA\tEarly Advantage\t2026-03-28 06:35:17\t2026-03-28 06:35:17\n11\tSR\tStart Right\t2026-03-28 06:35:17\t2026-03-28 06:35:17\n12\tCP\tChoice Power\t2026-03-28 06:35:17\t2026-03-28 06:35:17\n13\tFP\tFuture Pressure\t2026-03-28 06:35:17\t2026-03-28 06:35:17\n14\tSI\tStudent Interview\t2026-03-28 06:35:18\t2026-03-28 06:35:18\n15\tHF\tHall of Fame\t2026-03-28 06:35:18\t2026-03-28 06:35:18\n16\tCM\tClass Moment\t2026-03-28 06:35:18\t2026-03-28 06:35:18\n17\tTF\tTeacher Feedback\t2026-03-28 06:35:18\t2026-03-28 06:35:18\n18\tLP\tLearning Progress\t2026-03-28 06:35:18\t2026-03-28 06:35:18\n19\tSC\tStudent Confidence\t2026-03-28 06:35:19\t2026-03-28 06:35:19\n20\tPO\tPeople Stories\t2026-03-28 06:35:19\t2026-03-28 06:35:19\n21\tCA\tClass Activities\t2026-03-28 06:35:19\t2026-03-28 06:35:19\n22\tEV\tEvents\t2026-03-28 06:35:19\t2026-03-28 06:35:19\n23\tFS\tFirst Speaking\t2026-03-28 06:35:20\t2026-03-28 06:35:20\n",
+  "stderr": "",
+  "execution_time_ms": 1742
+}

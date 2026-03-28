@@ -1,0 +1,42 @@
+{
+  "query": "SELECT 'lanes' as tbl, COUNT(*) as cnt FROM lanes\nUNION ALL SELECT 'pillars', COUNT(*) FROM pillars\nUNION ALL SELECT 'series', COUNT(*) FROM series\nUNION ALL SELECT 'angles', COUNT(*) FROM angles\nUNION ALL SELECT 'posts', COUNT(*) FROM posts\nUNION ALL SELECT 'optional_posts', COUNT(*) FROM optional_posts\nUNION ALL SELECT 'videos', COUNT(*) FROM videos\nUNION ALL SELECT 'content_ideas', COUNT(*) FROM content_ideas;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SELECT 'lanes' as tbl, COUNT(*) as cnt FROM lanes\nUNION ALL SELECT 'pillars', COUNT(*) FROM pillars\nUNION ALL SELECT 'series', COUNT(*) FROM series\nUNION ALL SELECT 'angles', COUNT(*) FROM angles\nUNION ALL SELECT 'posts', COUNT(*) FROM posts\nUNION ALL SELECT 'optional_posts', COUNT(*) FROM optional_posts\nUNION ALL SELECT 'videos', COUNT(*) FROM videos\nUNION ALL SELECT 'content_ideas', COUNT(*) FROM content_ideas;",
+  "rows": [
+    {
+      "tbl": "angles",
+      "cnt": "21"
+    },
+    {
+      "tbl": "pillars",
+      "cnt": "23"
+    },
+    {
+      "tbl": "lanes",
+      "cnt": "6"
+    },
+    {
+      "tbl": "series",
+      "cnt": "40"
+    },
+    {
+      "tbl": "posts",
+      "cnt": "36"
+    },
+    {
+      "tbl": "optional_posts",
+      "cnt": "33"
+    },
+    {
+      "tbl": "content_ideas",
+      "cnt": "0"
+    },
+    {
+      "tbl": "videos",
+      "cnt": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "tbl\tcnt\nangles\t21\npillars\t23\nlanes\t6\nseries\t40\nposts\t36\noptional_posts\t33\ncontent_ideas\t0\nvideos\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1516
+}

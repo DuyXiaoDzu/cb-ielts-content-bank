@@ -1,0 +1,42 @@
+{
+  "query": "SELECT 'lanes' as tbl, COUNT(*) as cnt FROM lanes\nUNION ALL SELECT 'pillars', COUNT(*) FROM pillars\nUNION ALL SELECT 'series', COUNT(*) FROM series\nUNION ALL SELECT 'angles', COUNT(*) FROM angles\nUNION ALL SELECT 'posts (Main)', COUNT(*) FROM posts WHERE slotType = 'Main'\nUNION ALL SELECT 'posts (Video)', COUNT(*) FROM posts WHERE slotType = 'Video'\nUNION ALL SELECT 'optional_posts', COUNT(*) FROM optional_posts\nUNION ALL SELECT 'posts (total)', COUNT(*) FROM posts;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SELECT 'lanes' as tbl, COUNT(*) as cnt FROM lanes\nUNION ALL SELECT 'pillars', COUNT(*) FROM pillars\nUNION ALL SELECT 'series', COUNT(*) FROM series\nUNION ALL SELECT 'angles', COUNT(*) FROM angles\nUNION ALL SELECT 'posts (Main)', COUNT(*) FROM posts WHERE slotType = 'Main'\nUNION ALL SELECT 'posts (Video)', COUNT(*) FROM posts WHERE slotType = 'Video'\nUNION ALL SELECT 'optional_posts', COUNT(*) FROM optional_posts\nUNION ALL SELECT 'posts (total)', COUNT(*) FROM posts;",
+  "rows": [
+    {
+      "tbl": "angles",
+      "cnt": "21"
+    },
+    {
+      "tbl": "posts (Main)",
+      "cnt": "32"
+    },
+    {
+      "tbl": "lanes",
+      "cnt": "6"
+    },
+    {
+      "tbl": "series",
+      "cnt": "40"
+    },
+    {
+      "tbl": "pillars",
+      "cnt": "23"
+    },
+    {
+      "tbl": "optional_posts",
+      "cnt": "29"
+    },
+    {
+      "tbl": "posts (Video)",
+      "cnt": "4"
+    },
+    {
+      "tbl": "posts (total)",
+      "cnt": "36"
+    }
+  ],
+  "messages": [],
+  "stdout": "tbl\tcnt\nangles\t21\nposts (Main)\t32\nlanes\t6\nseries\t40\npillars\t23\noptional_posts\t29\nposts (Video)\t4\nposts (total)\t36\n",
+  "stderr": "",
+  "execution_time_ms": 1489
+}

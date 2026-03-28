@@ -1,0 +1,125 @@
+{
+  "query": "SELECT id, code, name FROM pillars ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SELECT id, code, name FROM pillars ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "code": "LR",
+      "name": "Learn Right"
+    },
+    {
+      "id": "2",
+      "code": "AS",
+      "name": "Awareness & Start"
+    },
+    {
+      "id": "3",
+      "code": "PF",
+      "name": "Proof & Funnel"
+    },
+    {
+      "id": "4",
+      "code": "SS",
+      "name": "Safe to Shine"
+    },
+    {
+      "id": "5",
+      "code": "BT",
+      "name": "Band on Time"
+    },
+    {
+      "id": "6",
+      "code": "BG",
+      "name": "Band Gap"
+    },
+    {
+      "id": "7",
+      "code": "OS",
+      "name": "Opening Schedule"
+    },
+    {
+      "id": "8",
+      "code": "PT",
+      "name": "Placement Test"
+    },
+    {
+      "id": "9",
+      "code": "FG",
+      "name": "Future Groundwork"
+    },
+    {
+      "id": "10",
+      "code": "EA",
+      "name": "Early Advantage"
+    },
+    {
+      "id": "11",
+      "code": "SR",
+      "name": "Start Right"
+    },
+    {
+      "id": "12",
+      "code": "CP",
+      "name": "Choice Power"
+    },
+    {
+      "id": "13",
+      "code": "FP",
+      "name": "Future Pressure"
+    },
+    {
+      "id": "14",
+      "code": "SI",
+      "name": "Student Interview"
+    },
+    {
+      "id": "15",
+      "code": "HF",
+      "name": "Hall of Fame"
+    },
+    {
+      "id": "16",
+      "code": "CM",
+      "name": "Class Moment"
+    },
+    {
+      "id": "17",
+      "code": "TF",
+      "name": "Teacher Feedback"
+    },
+    {
+      "id": "18",
+      "code": "LP",
+      "name": "Learning Progress"
+    },
+    {
+      "id": "19",
+      "code": "SC",
+      "name": "Student Confidence"
+    },
+    {
+      "id": "20",
+      "code": "PO",
+      "name": "People Stories"
+    },
+    {
+      "id": "21",
+      "code": "CA",
+      "name": "Class Activities"
+    },
+    {
+      "id": "22",
+      "code": "EV",
+      "name": "Events"
+    },
+    {
+      "id": "23",
+      "code": "FS",
+      "name": "First Speaking"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\tname\n1\tLR\tLearn Right\n2\tAS\tAwareness & Start\n3\tPF\tProof & Funnel\n4\tSS\tSafe to Shine\n5\tBT\tBand on Time\n6\tBG\tBand Gap\n7\tOS\tOpening Schedule\n8\tPT\tPlacement Test\n9\tFG\tFuture Groundwork\n10\tEA\tEarly Advantage\n11\tSR\tStart Right\n12\tCP\tChoice Power\n13\tFP\tFuture Pressure\n14\tSI\tStudent Interview\n15\tHF\tHall of Fame\n16\tCM\tClass Moment\n17\tTF\tTeacher Feedback\n18\tLP\tLearning Progress\n19\tSC\tStudent Confidence\n20\tPO\tPeople Stories\n21\tCA\tClass Activities\n22\tEV\tEvents\n23\tFS\tFirst Speaking\n",
+  "stderr": "",
+  "execution_time_ms": 1584
+}

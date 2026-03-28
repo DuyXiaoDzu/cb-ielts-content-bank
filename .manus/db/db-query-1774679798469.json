@@ -1,0 +1,25 @@
+{
+  "query": "SELECT id, code, name FROM pillars WHERE id > 20 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SELECT id, code, name FROM pillars WHERE id > 20 ORDER BY id;",
+  "rows": [
+    {
+      "id": "21",
+      "code": "CA",
+      "name": "Class Activities"
+    },
+    {
+      "id": "22",
+      "code": "EV",
+      "name": "Events"
+    },
+    {
+      "id": "23",
+      "code": "FS",
+      "name": "First Speaking"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcode\tname\n21\tCA\tClass Activities\n22\tEV\tEvents\n23\tFS\tFirst Speaking\n",
+  "stderr": "",
+  "execution_time_ms": 1544
+}

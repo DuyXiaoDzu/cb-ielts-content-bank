@@ -1,0 +1,21 @@
+{
+  "query": "SHOW COLUMNS FROM pillars;\nSELECT * FROM lanes ORDER BY code;\nSELECT p.id, p.code, p.name, p.laneCode FROM pillars p ORDER BY p.laneCode, p.code LIMIT 30;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Wmw2s9e6VwZQ1V.ed7cfaa6430e --database 5DQjKtUEL6F458wSzFzJar --execute SHOW COLUMNS FROM pillars;\nSELECT * FROM lanes ORDER BY code;\nSELECT p.id, p.code, p.name, p.laneCode FROM pillars p ORDER BY p.laneCode, p.code LIMIT 30;",
+  "returncode": 1,
+  "logs": [
+    "Field\tType\tNull\tKey\tDefault\tExtra",
+    "id\tint\tNO\tPRI\tNULL\tauto_increment",
+    "code\tvarchar(10)\tNO\tUNI\tNULL\t",
+    "name\tvarchar(200)\tNO\t\tNULL\t",
+    "createdAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\t",
+    "updatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\tDEFAULT_GENERATED on update CURRENT_TIMESTAMP",
+    "id\tcode\tname\tcreatedAt\tupdatedAt",
+    "1\tAC\tAcademic Core\t2026-03-28 06:35:13\t2026-03-28 06:35:13",
+    "6\tAD\tAdvocacy\t2026-03-28 06:35:14\t2026-03-28 06:35:14",
+    "2\tDG\tDemand Gen\t2026-03-28 06:35:14\t2026-03-28 06:35:14",
+    "3\tMT\tMicro Teaching\t2026-03-28 06:35:14\t2026-03-28 06:35:14",
+    "4\tSR\tService & Retention\t2026-03-28 06:35:14\t2026-03-28 06:35:14",
+    "5\tTC\tTrust & Conversion\t2026-03-28 06:35:14\t2026-03-28 06:35:14",
+    "ERROR 1054 (42S22) at line 3: Unknown column 'p.laneCode' in 'order clause'"
+  ]
+}

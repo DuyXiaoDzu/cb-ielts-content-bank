@@ -113,10 +113,14 @@ function KanbanView({ posts, onSelect }: { posts: any[]; onSelect: (p: any) => v
       // Cancel outgoing refetches to prevent overwriting optimistic update
       await utils.posts.list.cancel();
       const previousPosts = utils.posts.list.getData();
+      // Only merge defined fields to prevent cache corruption
+      const cleanVars = Object.fromEntries(
+        Object.entries(variables).filter(([_, v]: any) => v !== undefined)
+      );
       // Optimistically update the cache
       utils.posts.list.setData(undefined, (old: any) => {
         if (!old) return old;
-        return old.map((p: any) => p.id === variables.id ? { ...p, ...variables } : p);
+        return old.map((p: any) => p.id === variables.id ? { ...p, ...cleanVars } : p);
       });
       return { previousPosts };
     },

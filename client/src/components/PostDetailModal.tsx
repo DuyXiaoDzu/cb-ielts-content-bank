@@ -146,7 +146,11 @@ export function PostDetailModal({ post, open, onClose, lanes, pillars, seriesLis
 
   const handleSave = () => {
     const { id, createdAt, updatedAt, archived, archivedMonth, ...data } = form;
-    updatePost.mutate({ id: displayPost.id, ...data });
+    // Only send defined fields to prevent cache corruption
+    const cleanData = Object.fromEntries(
+      Object.entries(data).filter(([_, v]) => v !== undefined && v !== '')
+    );
+    updatePost.mutate({ id: displayPost.id, ...cleanData });
   };
 
   const handleStatusChange = (direction: 'back' | 'forward') => {

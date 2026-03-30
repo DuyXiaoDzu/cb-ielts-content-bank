@@ -56,3 +56,27 @@
 - [x] PostDetailModal: AI Parse — paste bài viết hoàn chỉnh → AI tự tách hook/body/hashtag/CTA điền vào fields
 - [x] PostDetailModal: Tab Review = Facebook Post Mockup (preview bài đăng FB hoàn chỉnh)
 - [x] Whiteboard: Sửa text tool — có thể click vào canvas và gõ chữ được
+
+
+## Priority 1 — Workflow & System Logic
+
+- [ ] Optimize Planning Board (Blending Board) workflow: drag-drop, bulk status update, week view
+- [ ] Sync Calendar ↔ Dashboard: auto-refresh dashboard when posts updated
+- [ ] Optimize Calendar for daily work: filter by week, quick add, easier navigation
+- [ ] Add Weekly Progress view to Dashboard: show completion % per week (W1, W2, current week)
+
+## Priority 2 — Metrics & Automation
+
+- [ ] Link published post URLs to Metrics section for tracking
+- [ ] Add AI automation: calculate total reach, views, engagement metrics
+- [ ] Auto-update checklist when required fields are completed
+
+## Priority 3 — Feature Additions
+
+- [ ] Add image upload (not just URL paste)
+- [ ] Add Script field for video posts (INTRO/BODY/OUTRO structure)
+- [ ] Create 1 sample post full workflow: Idea → Planned → In Progress → Ready → Published
+
+## Priority 4 — AI Improvements
+
+- [ ] Upgrade Copywriting AI: suggest copy type, pillar, angle, strategy tags when pasting post

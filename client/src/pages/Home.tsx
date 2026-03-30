@@ -57,6 +57,39 @@ export default function Home() {
     [activePosts]
   );
 
+  // Weekly Progress calculation
+  const weeklyProgress = useMemo(() => {
+    const weeks: Record<string, { total: number; published: number; planned: number; inProgress: number; ready: number }> = {};
+    activePosts.forEach(p => {
+      const week = p.weekLabel || 'No Week';
+      if (!weeks[week]) weeks[week] = { total: 0, published: 0, planned: 0, inProgress: 0, ready: 0 };
+      weeks[week].total++;
+      if (p.status === 'Published') weeks[week].published++;
+      else if (p.status === 'Planned') weeks[week].planned++;
+      else if (p.status === 'In Progress') weeks[week].inProgress++;
+      else if (p.status === 'Ready') weeks[week].ready++;
+    });
+    return Object.entries(weeks)
+      .sort(([a], [b]) => {
+        // Sort weeks: W1 Apr, W2 Apr, W3 Apr, W4 Apr, W1 May, etc.
+        const parseWeek = (w: string) => {
+          const match = w.match(/W(\d+)\s+(\w+)/);
+          if (!match) return [0, 0];
+          const monthOrder: Record<string, number> = { 'Apr': 1, 'May': 2, 'Jun': 3 };
+          return [monthOrder[match[2]] || 0, parseInt(match[1]) || 0];
+        };
+        const [aMonth, aWeek] = parseWeek(a);
+        const [bMonth, bWeek] = parseWeek(b);
+        if (aMonth !== bMonth) return aMonth - bMonth;
+        return aWeek - bWeek;
+      })
+      .map(([week, stats]) => ({
+        week,
+        ...stats,
+        progress: stats.total > 0 ? Math.round((stats.published / stats.total) * 100) : 0,
+      }));
+  }, [activePosts]);
+
   if (isLoading) {
     return (
       <div className="space-y-6">
@@ -197,6 +230,39 @@ export default function Home() {
         </Card>
       </div>
 
+      {/* Weekly Progress */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <BarChart3 className="h-4 w-4" /> Weekly Progress
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {weeklyProgress.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-4">No weeks scheduled</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {weeklyProgress.map(w => (
+                <div key={w.week} className="p-3 rounded-lg border border-border/50 hover:border-border transition-colors">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-sm text-foreground">{w.week}</span>
+                    <span className="text-xs font-semibold text-primary">{w.progress}%</span>
+                  </div>
+                  <Progress value={w.progress} className="h-2 mb-2" />
+                  <div className="flex gap-2 text-xs text-muted-foreground">
+                    <span>📋 {w.planned}</span>
+                    <span>⏳ {w.inProgress}</span>
+                    <span>✅ {w.ready}</span>
+                    <span>🎉 {w.published}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">{w.published}/{w.total} published</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* Upcoming + Recent */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Upcoming Posts */}
@@ -260,59 +326,54 @@ export default function Home() {
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <AlertCircle className="h-4 w-4" /> Quick Actions
+            <Zap className="h-4 w-4" /> Quick Actions
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { label: 'New Post', path: '/planning', icon: FileText, color: 'bg-blue-50 text-blue-700 hover:bg-blue-100' },
-              { label: 'Browse Ideas', path: '/ideas', icon: Zap, color: 'bg-amber-50 text-amber-700 hover:bg-amber-100' },
-              { label: 'Whiteboard', path: '/whiteboard', icon: BarChart3, color: 'bg-purple-50 text-purple-700 hover:bg-purple-100' },
-              { label: 'View Metrics', path: '/metrics', icon: TrendingUp, color: 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100' },
-            ].map(action => (
-              <button
-                key={action.label}
-                onClick={() => setLocation(action.path)}
-                className={`flex items-center gap-3 p-4 rounded-xl transition-colors ${action.color}`}
-              >
-                <action.icon className="h-5 w-5" />
-                <span className="text-sm font-medium">{action.label}</span>
-              </button>
-            ))}
-          </div>
+        <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <QuickAction label="New Post" icon="📝" onClick={() => setLocation('/planning')} />
+          <QuickAction label="Browse Ideas" icon="💡" onClick={() => setLocation('/ideas')} />
+          <QuickAction label="Optional Pool" icon="🎯" onClick={() => setLocation('/optional')} />
+          <QuickAction label="Settings" icon="⚙️" onClick={() => setLocation('/settings')} />
         </CardContent>
       </Card>
     </div>
   );
 }
 
-function KpiCard({ icon, label, value, sub, color, onClick }: {
-  icon: React.ReactNode; label: string; value: number; sub: string; color: string; onClick?: () => void;
-}) {
+function KpiCard({ icon, label, value, sub, color, onClick }: any) {
   return (
     <Card className="border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow" onClick={onClick}>
-      <CardContent className="p-4">
-        <div className="flex items-center gap-3">
-          <div className={`h-10 w-10 rounded-xl ${color} text-white flex items-center justify-center shrink-0`}>
-            {icon}
+      <CardContent className="pt-6">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-xs text-muted-foreground font-medium">{label}</p>
+            <p className="text-2xl font-bold mt-1">{value}</p>
+            <p className="text-xs text-muted-foreground mt-1">{sub}</p>
           </div>
-          <div className="min-w-0">
-            <p className="text-2xl font-bold">{value}</p>
-            <p className="text-xs text-muted-foreground truncate">{label}</p>
-          </div>
+          <div className={`${color} p-2 rounded-lg text-white`}>{icon}</div>
         </div>
-        <p className="text-xs text-muted-foreground mt-2">{sub}</p>
       </CardContent>
     </Card>
   );
 }
 
-function MiniStat({ label, value, color }: { label: string; value: number; color: string }) {
+function MiniStat({ label, value, color }: any) {
   return (
     <div>
       <p className={`text-lg font-bold ${color}`}>{value}</p>
       <p className="text-xs text-muted-foreground">{label}</p>
     </div>
+  );
+}
+
+function QuickAction({ label, icon, onClick }: any) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-accent/50 transition-colors text-center"
+    >
+      <span className="text-2xl">{icon}</span>
+      <span className="text-xs font-medium text-foreground">{label}</span>
+    </button>
   );
 }

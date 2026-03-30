@@ -24,6 +24,7 @@ export default function Planning() {
   const [search, setSearch] = useState('');
   const [filterLane, setFilterLane] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [filterWeek, setFilterWeek] = useState('all');
   const [selectedPost, setSelectedPost] = useState<any>(null);
   const [showCreate, setShowCreate] = useState(false);
 
@@ -37,14 +38,34 @@ export default function Planning() {
 
   const activePosts = useMemo(() => posts.filter((p: any) => !p.archived), [posts]);
 
+  const allWeeks = useMemo(() => {
+    const weeks = new Set<string>();
+    activePosts.forEach((p: any) => {
+      if (p.weekLabel) weeks.add(p.weekLabel);
+    });
+    return Array.from(weeks).sort((a, b) => {
+      const parseWeek = (w: string) => {
+        const match = w.match(/W(\d+)\s+(\w+)/);
+        if (!match) return [0, 0];
+        const monthOrder: Record<string, number> = { 'Apr': 1, 'May': 2, 'Jun': 3 };
+        return [monthOrder[match[2]] || 0, parseInt(match[1]) || 0];
+      };
+      const [aMonth, aWeek] = parseWeek(a);
+      const [bMonth, bWeek] = parseWeek(b);
+      if (aMonth !== bMonth) return aMonth - bMonth;
+      return aWeek - bWeek;
+    });
+  }, [activePosts]);
+
   const filtered = useMemo(() => {
     return activePosts.filter((p: any) => {
       if (search && !(p.topic?.toLowerCase().includes(search.toLowerCase()) || p.postCode?.toLowerCase().includes(search.toLowerCase()))) return false;
       if (filterLane !== 'all' && p.laneCode !== filterLane) return false;
       if (filterStatus !== 'all' && p.status !== filterStatus) return false;
+      if (filterWeek !== 'all' && p.weekLabel !== filterWeek) return false;
       return true;
     });
-  }, [activePosts, search, filterLane, filterStatus]);
+  }, [activePosts, search, filterLane, filterStatus, filterWeek]);
 
   return (
     <div className="space-y-4">
@@ -75,6 +96,13 @@ export default function Planning() {
           <SelectContent>
             <SelectItem value="all">All Status</SelectItem>
             {STATUSES.filter(s => s !== 'Archived').map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+          </SelectContent>
+        </Select>
+        <Select value={filterWeek} onValueChange={setFilterWeek}>
+          <SelectTrigger className="w-[140px] h-9"><SelectValue placeholder="All Weeks" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Weeks</SelectItem>
+            {allWeeks.map(w => <SelectItem key={w} value={w}>{w}</SelectItem>)}
           </SelectContent>
         </Select>
         <div className="flex items-center border rounded-lg overflow-hidden ml-auto">
